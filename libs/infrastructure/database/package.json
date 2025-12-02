@@ -1,0 +1,19 @@
+{
+  "name": "@axonline/infra-database",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "drizzle-orm": "^0.39.1",
+    "postgres": "^3.4.5",
+    "tslib": "^2.3.0",
+    "zod": "^3.24.0",
+    "@nestjs/common": "^11.0.0",
+    "@axonline/kernel": "workspace:*",
+    "@axonline/shared-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.0"
+  }
+}

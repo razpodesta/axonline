@@ -1,0 +1,18 @@
+{
+  "name": "@axonline/domain-whatsapp",
+  "version": "0.0.1",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "zod": "^3.24.0",
+    "axios": "^1.13.2",
+    "bullmq": "^5.65.0",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/bullmq": "^11.0.4",
+    "@axonline/kernel": "workspace:*",
+    "@axonline/infra-ai": "workspace:*",
+    "@axonline/domain-notifications": "workspace:*",
+    "@axonline/infra-database": "workspace:*",
+    "@axonline/shared-utils": "workspace:*",
+    "@axonline/domain-toolbox": "workspace:*"
+  }
+}

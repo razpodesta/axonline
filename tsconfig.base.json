@@ -1,0 +1,46 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2022", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "//--- KERNEL & SHARED ---//": [],
+      "@axonline/kernel": ["libs/shared/kernel/src/index.ts"],
+      "@axonline/shared/testing": ["libs/shared/testing/src/index.ts"],
+      "@axonline/shared/dtos": ["libs/shared/dtos/src/index.ts"],
+      "@axonline/shared/utils": ["libs/shared/utils/src/index.ts"],
+
+      "//--- INFRASTRUCTURE ---//": [],
+      "@axonline/infra/database": ["libs/infrastructure/database/src/index.ts"],
+      "@axonline/infra/security": ["libs/infrastructure/security/src/index.ts"],
+      "@axonline/infra/logging": ["libs/infrastructure/logging/src/index.ts"],
+      "@axonline/infra/ai": ["libs/infrastructure/ai-system/src/index.ts"],
+
+      "//--- DOMAINS ---//": [],
+      "@axonline/domains/notifications": ["libs/domains/notifications/src/index.ts"],
+      "@axonline/domains/gamification": ["libs/domains/gamification/src/index.ts"],
+      "@axonline/domains/whatsapp": ["libs/domains/whatsapp/src/index.ts"],
+
+      "//--- TOOLBOX (SUB-LIBRERÍAS) ---//": [],
+      "@axonline/domain-toolbox-client": ["libs/domains/toolbox/client/src/index.ts"],
+      "@axonline/domain-toolbox-razter": ["libs/domains/toolbox/razter/src/index.ts"],
+      "@axonline/domain-toolbox-shared": ["libs/domains/toolbox/shared/src/index.ts"],
+
+      "//--- APPS ---//": [],
+      "@axonline/frontend/*": ["apps/frontend/src/*"],
+      "@axonline/backend/*": ["apps/backend/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

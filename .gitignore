@@ -1,0 +1,34 @@
+# Dependencias
+node_modules
+.pnpm-debug.log*
+
+# Nx & Build
+dist
+tmp
+.nx/cache
+.nx/workspace-data
+
+# Entorno & Secretos (CRÍTICO)
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea
+
+# Logs & Testing
+coverage
+*.log
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Sistemas Operativos
+.DS_Store
+Thumbs.db
+
+reports/
