@@ -13,6 +13,8 @@
     "@axonline/domain-notifications": "workspace:*",
     "@axonline/infra-database": "workspace:*",
     "@axonline/shared-utils": "workspace:*",
-    "@axonline/domain-toolbox": "workspace:*"
+    "@axonline/domain-toolbox-client": "workspace:*",
+    "@axonline/domain-toolbox-razter": "workspace:*",
+    "@axonline/domain-toolbox-shared": "workspace:*"
   }
 }

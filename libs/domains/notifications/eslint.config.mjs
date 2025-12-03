@@ -1,24 +1,17 @@
-import baseConfig from '../../eslint.config.mjs';
+import baseConfig from '../../../eslint.config.mjs';
 
 export default [
   ...baseConfig,
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.json'],
     rules: {
       '@nx/dependency-checks': [
         'error',
-        {
-          ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
-        },
-      ],
+        { ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'] }
+      ]
     },
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    rules: {},
-  },
-  {
-    files: ['**/*.js', '**/*.jsx'],
-    rules: {},
-  },
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
+  }
 ];

@@ -5,7 +5,7 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/node_modules', '**/.next'],
+    ignores: ['**/dist', '**/node_modules', '**/.next', '**/.swc', '**/coverage', '**/reports'],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -16,36 +16,72 @@ export default [
           enforceBuildableLibDependency: true,
           allow: [],
           depConstraints: [
-            // 1. FRONTEND: Solo consume UI y Kernel (Tipos)
+            // ------------------------------------------------------------
+            // 1. APLICACIONES (TOP LEVEL)
+            // ------------------------------------------------------------
             {
               sourceTag: 'scope:frontend',
-              onlyDependOnLibsWithTags: ['scope:shared', 'type:util', 'type:ui']
+              onlyDependOnLibsWithTags: [
+                'scope:shared', // Kernel, DTOs
+                'type:util'     // Utilidades agnósticas (Toolbox Client)
+              ]
             },
-            // 2. BACKEND: Orquesta los Dominios
             {
               sourceTag: 'scope:backend',
-              onlyDependOnLibsWithTags: ['scope:shared', 'type:domain', 'type:util', 'type:infra']
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'type:domain',
+                'type:infra',
+                'type:util'
+              ]
             },
-            // 3. DOMINIOS (Identity, Billing): Núcleo puro
+
+            // ------------------------------------------------------------
+            // 2. CAPA DE DOMINIO (BUSINESS LOGIC)
+            // ------------------------------------------------------------
             {
               sourceTag: 'type:domain',
-              onlyDependOnLibsWithTags: ['scope:shared', 'type:util', 'type:infra'] // Infra solo para inyección de puertos
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'type:util',
+                'type:infra',   // Para inyectar adaptadores
+                'type:domain'   // Comunicación entre dominios (Eventos)
+              ]
             },
-            // 4. INFRAESTRUCTURA: Adaptadores concretos
+
+            // ------------------------------------------------------------
+            // 3. CAPA DE INFRAESTRUCTURA (ADAPTERS)
+            // ------------------------------------------------------------
             {
               sourceTag: 'type:infra',
-              onlyDependOnLibsWithTags: ['scope:shared', 'type:util']
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'type:util',
+                'type:infra'    // Infra puede usar otra Infra (AI usa DB)
+              ]
             },
-            // 5. KERNEL (Shared): Base de la pirámide
+
+            // ------------------------------------------------------------
+            // 4. CAPA COMPARTIDA (KERNEL & UTILS)
+            // ------------------------------------------------------------
             {
               sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared']
+              onlyDependOnLibsWithTags: [
+                'scope:shared' // El núcleo solo se habla a sí mismo
+              ]
+            },
+            {
+              sourceTag: 'type:util',
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'type:util'
+              ]
             }
           ],
         },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
-      'no-console': ['warn', { allow: ['error', 'warn', 'info'] }]
+      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }]
     },
   },
 ];

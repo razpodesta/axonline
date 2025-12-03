@@ -13,6 +13,6 @@
     "@axonline/shared-utils": "workspace:*",
     "@axonline/infra-database": "workspace:*",
     "@axonline/kernel": "workspace:*",
-    "@axonline/domain-toolbox": "workspace:*"
+    "@axonline/domain-toolbox-shared": "workspace:*"
   }
 }
